@@ -27,19 +27,64 @@ class ObservableViewController: UIViewController {
     }
     
     func createAction() -> Void {
+        /*
+         * 多个订阅者，share(replay: 10)：后订阅的订阅者接收，后订阅者订阅之前错过的信号，数量为10
         self.requestButton?.rx.tap.subscribe(onNext:{() in
             
-            let observable = self.createObservable(p: "开始请求网络")
+            let observable = self.createObservable(p: "开始请求网络").share(replay: 10)
             
             observable.subscribe(onNext: { (x) in
-                print(x)
+                print(x + "1111111")
             }, onError: { (e) in
                 print("error")
             }, onCompleted: {
-                print("请求完成")
-            }).dispose()
+                print("请求完成" + "1111111")
+            }).disposed(by: disposeBag)
             
+             observable.subscribe(onNext: { (x) in
+             print(x + "222222222")
+             }, onError: { (e) in
+             print("error")
+             }, onCompleted: {
+             print("请求完成" + "222222222")
+             }).disposed(by: disposeBag)
+        }).disposed(by: disposeBag)*/
+        
+        
+        /*
+         * 接受信号，5S后停止
+        self.requestButton?.rx.tap.subscribe(onNext:{() in
+            let observable = self.createObservable(p: "开始请求网络")
+            let s = observable.subscribe(onNext: { (x) in
+                print(x + "1111111")
+            }, onError: { (e) in
+                print("error")
+            }, onCompleted: {
+                print("请求完成" + "1111111")
+            })
+            
+            Thread.sleep(forTimeInterval: 5)
+            
+            s.dispose()
+            
+        }).disposed(by: disposeBag) */
+        
+        
+        /** 将信号绑定至label上 */
+        self.requestButton?.rx.tap.subscribe(onNext:{() in
+            DispatchQueue.main.async {
+                let observable = self.createObservable(p: "开始请求网络")
+                
+                let s = observable.bind(to: self.showLabel.rx.text)
+                
+                DispatchQueue.global().asyncAfter(deadline: .now() + 10, execute: {
+                  
+                    s.dispose()
+                    
+                })
+            }
         }).disposed(by: disposeBag)
+            
     }
     
     
@@ -78,7 +123,7 @@ class ObservableViewController: UIViewController {
         
         self.showLabel.numberOfLines = 0
         self.showLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(100)
+            make.top.equalToSuperview().offset(100)
             make.left.equalTo(10)
             make.right.equalTo(-10)
             make.height.greaterThanOrEqualTo(5)
@@ -88,15 +133,23 @@ class ObservableViewController: UIViewController {
 
 extension ObservableViewController{
     
-    func createObservable(p:String) -> Observable<Any> {
+    func createObservable(p:String) -> Observable<String> {
         return Observable.create { (observer) -> Disposable in
-            observer.onNext("正在请求1")
-            observer.onNext("正在请求2")
-            observer.onNext("正在请求3")
-            observer.onNext("正在请求4")
-            observer.onCompleted()
-            observer.onNext("正在请求5")
-            return Disposables.create()
+            
+            var i = 10000
+            let timer = DispatchSource.makeTimerSource(queue: DispatchQueue.global())
+            timer.schedule(deadline: .now(), repeating: 0.5)
+//            timer.scheduleRepeating(deadline: .now(), interval: .seconds(0.5))
+            let cancel = Disposables.create {
+                timer.cancel()
+            }
+            timer.setEventHandler {
+                i += 1
+               observer.onNext(String(i))
+                print(String(i))
+            }
+            timer.resume()
+            return cancel
         }
     }
 }
