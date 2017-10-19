@@ -13,6 +13,7 @@
 		62E730841F987C6100EE3A1B /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E730821F987C6100EE3A1B /* RootViewController.swift */; };
 		62E730851F987C6100EE3A1B /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62E730831F987C6100EE3A1B /* RootViewController.xib */; };
 		62E730891F987E2F00EE3A1B /* TextFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E730881F987E2F00EE3A1B /* TextFieldViewController.swift */; };
+		62E7308B1F98939100EE3A1B /* ObservableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E7308A1F98939100EE3A1B /* ObservableViewController.swift */; };
 		AA542EDF124E024B66BD4311 /* Pods_RXSwiftDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA50398FF99A585F6522C0E /* Pods_RXSwiftDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		62E730821F987C6100EE3A1B /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		62E730831F987C6100EE3A1B /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		62E730881F987E2F00EE3A1B /* TextFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldViewController.swift; sourceTree = "<group>"; };
+		62E7308A1F98939100EE3A1B /* ObservableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableViewController.swift; sourceTree = "<group>"; };
 		6818ACB4373AEB2E18686894 /* Pods-RXSwiftDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RXSwiftDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RXSwiftDemo/Pods-RXSwiftDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		6AA50398FF99A585F6522C0E /* Pods_RXSwiftDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RXSwiftDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				62E730881F987E2F00EE3A1B /* TextFieldViewController.swift */,
+				62E7308A1F98939100EE3A1B /* ObservableViewController.swift */,
 			);
 			path = Ex;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				62E730841F987C6100EE3A1B /* RootViewController.swift in Sources */,
+				62E7308B1F98939100EE3A1B /* ObservableViewController.swift in Sources */,
 				62E7306F1F987AB900EE3A1B /* AppDelegate.swift in Sources */,
 				62E730891F987E2F00EE3A1B /* TextFieldViewController.swift in Sources */,
 			);
