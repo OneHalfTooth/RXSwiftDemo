@@ -23,8 +23,10 @@ class TextFieldViewController: UIViewController {
         super.viewDidLoad()
 
         self.title = "UITextField"
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.view.backgroundColor = UIColor.init(named: "White")
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+        }
+        self.view.backgroundColor = UIColor.white
         
         self.createView()
         self.createAction()
@@ -73,7 +75,7 @@ class TextFieldViewController: UIViewController {
     func createTextField() -> Void {
         
         self.view.addSubview(self.inputTextField)
-        self.inputTextField.backgroundColor = UIColor.init(named: "Back")
+        self.inputTextField.backgroundColor = UIColor.init(red: 245 / 255.0, green: 245 / 255.0, blue: 245 / 255.0, alpha: 1)
         self.inputTextField.placeholder = "输入"
         self.inputTextField.textAlignment = .center
         self.inputTextField.snp.makeConstraints { (make) in

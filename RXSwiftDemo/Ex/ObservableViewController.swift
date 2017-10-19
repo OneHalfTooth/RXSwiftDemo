@@ -21,7 +21,7 @@ class ObservableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = UIColor.init(named: "Back")
+        self.view.backgroundColor = UIColor.init(red: 245 / 255.0, green: 245 / 255.0, blue: 245 / 255.0, alpha: 1)
         self.createView()
         self.createAction()
     }
@@ -142,12 +142,15 @@ class ObservableViewController: UIViewController {
 extension ObservableViewController{
     
     func createObservable(p:String) -> Observable<String> {
+        
+        
         return Observable.create { (observer) -> Disposable in
             
             var i = arc4random() % 100 *  10000
             let timer = DispatchSource.makeTimerSource(queue: DispatchQueue.global())
             timer.schedule(deadline: .now(), repeating: 0.5)
-//            timer.scheduleRepeating(deadline: .now(), interval: .seconds(0.5))
+            
+            /** 信号结束的时候执行代码块 */
             let cancel = Disposables.create {
                 timer.cancel()
             }
@@ -157,7 +160,26 @@ extension ObservableViewController{
                 print(String(i))
             }
             timer.resume()
+            
+            /** 信号结束的时候会执行代码块,用来停止计时器 */
             return cancel
         }
+ /*
+        return Observable.create { (observer) -> Disposable in
+            
+            var i = arc4random() % 100 *  10000
+            let timer = DispatchSource.makeTimerSource(queue: DispatchQueue.global())
+            timer.schedule(deadline: .now(), repeating: 0.5)
+            
+            timer.setEventHandler {
+                i += 1
+                observer.onNext(String(i))
+                print(String(i))
+            }
+            timer.resume()
+            
+            return Disposables.create()
+        }
+ */
     }
 }

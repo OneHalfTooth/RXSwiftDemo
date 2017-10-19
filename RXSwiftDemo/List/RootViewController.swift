@@ -16,7 +16,8 @@ class RootViewController: UIViewController,UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     
     let dataSourceArray = ["UITextField 绑定",
-                           "Observable"]
+                           "Observable",
+                           "自定义操作符"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,9 @@ extension RootViewController:UITableViewDelegate{
 
         case 1:
             self.navigationController?.pushViewController(ObservableViewController(), animated: true)
+            break
+        case 2:
+            self.navigationController?.pushViewController(CustomOperatorsViewController(), animated: true)
             break
         default: break
             
