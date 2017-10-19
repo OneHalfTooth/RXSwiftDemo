@@ -34,43 +34,51 @@ class ObservableViewController: UIViewController {
             let observable = self.createObservable(p: "开始请求网络").share(replay: 10)
             
             observable.subscribe(onNext: { (x) in
-                print(x + "1111111")
+                print(x + "++++++++++++++++++++++++")
             }, onError: { (e) in
                 print("error")
             }, onCompleted: {
-                print("请求完成" + "1111111")
+                print("请求完成" + "++++++++++++++++++++++++")
             }).disposed(by: disposeBag)
             
+            Thread.sleep(forTimeInterval: 10)
+            
              observable.subscribe(onNext: { (x) in
-             print(x + "222222222")
+             print(x + "======================")
              }, onError: { (e) in
              print("error")
              }, onCompleted: {
-             print("请求完成" + "222222222")
+             print("请求完成" + "======================")
              }).disposed(by: disposeBag)
-        }).disposed(by: disposeBag)*/
-        
-        
-        /*
-         * 接受信号，5S后停止
-        self.requestButton?.rx.tap.subscribe(onNext:{() in
-            let observable = self.createObservable(p: "开始请求网络")
-            let s = observable.subscribe(onNext: { (x) in
-                print(x + "1111111")
-            }, onError: { (e) in
-                print("error")
-            }, onCompleted: {
-                print("请求完成" + "1111111")
-            })
-            
-            Thread.sleep(forTimeInterval: 5)
-            
-            s.dispose()
-            
         }).disposed(by: disposeBag) */
         
         
-        /** 将信号绑定至label上 */
+        /*
+         * 多个订阅者，订阅者与订阅者 相互独立，相当于 每个subscribe 都重新创建了一个observable 对象 */
+        self.requestButton?.rx.tap.subscribe(onNext:{() in
+            let observable = self.createObservable(p: "开始请求网络")
+            observable.subscribe(onNext: { (x) in
+                print(x + "++++++++++++++++++++++++")
+            }, onError: { (e) in
+                print("error")
+            }, onCompleted: {
+                print("请求完成" + "++++++++++++++++++++++++")
+            }).disposed(by: disposeBag)
+            
+            Thread.sleep(forTimeInterval: 10)
+            
+            observable.subscribe(onNext: { (x) in
+                print(x + "======================")
+            }, onError: { (e) in
+                print("error")
+            }, onCompleted: {
+                print("请求完成" + "======================")
+            }).disposed(by: disposeBag)
+            
+        }).disposed(by: disposeBag)
+        
+        
+        /** 将信号绑定至label上
         self.requestButton?.rx.tap.subscribe(onNext:{() in
             DispatchQueue.main.async {
                 let observable = self.createObservable(p: "开始请求网络")
@@ -83,7 +91,7 @@ class ObservableViewController: UIViewController {
                     
                 })
             }
-        }).disposed(by: disposeBag)
+        }).disposed(by: disposeBag) */
             
     }
     
@@ -136,7 +144,7 @@ extension ObservableViewController{
     func createObservable(p:String) -> Observable<String> {
         return Observable.create { (observer) -> Disposable in
             
-            var i = 10000
+            var i = arc4random() % 100 *  10000
             let timer = DispatchSource.makeTimerSource(queue: DispatchQueue.global())
             timer.schedule(deadline: .now(), repeating: 0.5)
 //            timer.scheduleRepeating(deadline: .now(), interval: .seconds(0.5))
