@@ -13,17 +13,27 @@ import RxCocoa
 class CustomOperatorsViewController: UIViewController {
 
     
+    let showLabel = UILabel()
+    let inputText = UITextField()
+    var p : Variable<String> = Variable("")
+    
     let studyLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "自定义操作符"
+        self.title = "自定义操作符、变量的使用"
         self.view.backgroundColor = UIColor.white
         self.createView()
+        self.createAction()
     }
     
     func createAction() -> Void {
         
+        self.inputText.rx.text.orEmpty.map { (s) -> String in
+            return s
+        }.bind(to: self.p).disposed(by: disposeBag)
+        
+        self.p.asObservable().bind(to: self.showLabel.rx.text).disposed(by: disposeBag)
         
         
     }
@@ -34,6 +44,36 @@ class CustomOperatorsViewController: UIViewController {
         
         self.createCustomOperButton()
         
+        
+        self.createShowLable()
+        
+        self.createInputText()
+        
+    }
+    
+    func createInputText() -> Void {
+        self.view.addSubview(self.inputText)
+        
+        self.inputText.backgroundColor = UIColor.init(red: 245 / 255.0, green: 245 / 255.0, blue: 245 / 255.0, alpha: 1)
+        self.inputText.textAlignment = .center
+        self.inputText.placeholder = "请输入变量"
+        self.inputText.snp.makeConstraints { (make) in
+            make.top.equalTo(self.showLabel.snp.bottom).offset(20)
+            make.left.right.equalTo(self.showLabel)
+            make.height.equalTo(44)
+        }
+    }
+    
+    func createShowLable() -> Void {
+        
+        self.view.addSubview(self.showLabel)
+        self.showLabel.textAlignment = .center
+        self.showLabel.numberOfLines = 0
+        self.showLabel.snp.makeConstraints { (make) in
+            make.height.greaterThanOrEqualTo(2)
+            make.left.right.equalTo(self.studyLabel)
+            make.top.equalTo(self.studyLabel.snp.bottom).offset(104)
+        }
     }
     
     func createCustomOperButton() -> Void {

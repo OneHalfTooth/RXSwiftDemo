@@ -17,7 +17,7 @@ class RootViewController: UIViewController,UITableViewDataSource {
     
     let dataSourceArray = ["UITextField 绑定",
                            "Observable",
-                           "自定义操作符"]
+                           "自定义操作符、变量的使用"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
