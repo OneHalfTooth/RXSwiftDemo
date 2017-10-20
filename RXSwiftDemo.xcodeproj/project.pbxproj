@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		62C8EFC21F99909900C2A3C8 /* KVOViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C8EFC11F99909900C2A3C8 /* KVOViewController.swift */; };
 		62E7306F1F987AB900EE3A1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E7306E1F987AB900EE3A1B /* AppDelegate.swift */; };
 		62E730761F987AB900EE3A1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62E730751F987AB900EE3A1B /* Assets.xcassets */; };
 		62E730791F987AB900EE3A1B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62E730771F987AB900EE3A1B /* LaunchScreen.storyboard */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		42C8A47A0140DF9EDECA1DFF /* Pods-RXSwiftDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RXSwiftDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-RXSwiftDemo/Pods-RXSwiftDemo.release.xcconfig"; sourceTree = "<group>"; };
+		62C8EFC11F99909900C2A3C8 /* KVOViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVOViewController.swift; sourceTree = "<group>"; };
 		62E7306B1F987AB900EE3A1B /* RXSwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RXSwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62E7306E1F987AB900EE3A1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62E730751F987AB900EE3A1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				62E730881F987E2F00EE3A1B /* TextFieldViewController.swift */,
 				62E7308A1F98939100EE3A1B /* ObservableViewController.swift */,
 				62E7308C1F98AAFC00EE3A1B /* CustomOperatorsViewController.swift */,
+				62C8EFC11F99909900C2A3C8 /* KVOViewController.swift */,
 			);
 			path = Ex;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				62E7308B1F98939100EE3A1B /* ObservableViewController.swift in Sources */,
 				62E7306F1F987AB900EE3A1B /* AppDelegate.swift in Sources */,
 				62E730891F987E2F00EE3A1B /* TextFieldViewController.swift in Sources */,
+				62C8EFC21F99909900C2A3C8 /* KVOViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
