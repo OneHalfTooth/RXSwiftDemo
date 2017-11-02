@@ -149,7 +149,4 @@ extension ObservableType{
             })
         })
     }
-    
-
-    
 }

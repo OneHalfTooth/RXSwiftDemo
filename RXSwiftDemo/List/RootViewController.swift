@@ -19,7 +19,8 @@ class RootViewController: UIViewController,UITableViewDataSource {
                            "Observable",
                            "自定义操作符、变量的使用",
                            "KVO",
-                           "Subject的使用"]
+                           "Subject的使用",
+                           "操作符"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +56,9 @@ extension RootViewController:UITableViewDelegate{
             break
         case 4:
             self.navigationController?.pushViewController(SubjectViewController(), animated: true)
+            break
+        case 5:
+            self.navigationController?.pushViewController(OperatorsViewController(), animated: true)
             break
         default: break
             
