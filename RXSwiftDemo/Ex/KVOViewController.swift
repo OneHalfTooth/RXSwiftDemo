@@ -55,7 +55,7 @@ class KVOViewController: UIViewController {
         
         /** 因为swift对runtime支持不够友好，所以racView 添加 @objc dynamic  也无法让frame 成为动态属性，所以观察者无效 */
         self.rx.observe(CGRect.self, "racView.frame").map({ (x) -> String in
-            return "view的frame为 width:\(x?.size.width),height:\(x?.size.height)"
+            return "view的frame为 width:\(String(describing: x?.size.width)),height:\(String(describing: x?.size.height))String(describing: x?.origin.x)String(describing: x?.origin.y)"
         }).bind(to: self.frameShowLabel.rx.text).disposed(by: disposeBag)
     }
     

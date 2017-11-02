@@ -18,7 +18,8 @@ class RootViewController: UIViewController,UITableViewDataSource {
     let dataSourceArray = ["UITextField 绑定",
                            "Observable",
                            "自定义操作符、变量的使用",
-                           "KVO"]
+                           "KVO",
+                           "Subject的使用"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +52,9 @@ extension RootViewController:UITableViewDelegate{
             break
         case 3:
             self.navigationController?.pushViewController(KVOViewController(), animated: true)
+            break
+        case 4:
+            self.navigationController?.pushViewController(SubjectViewController(), animated: true)
             break
         default: break
             
